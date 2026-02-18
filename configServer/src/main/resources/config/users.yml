@@ -1,5 +1,17 @@
 spring:
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
   data:
     mongodb:
       uri: ${DB_URI}
       database: ${DB_NAME}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

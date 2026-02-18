@@ -4,6 +4,12 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASS}
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -14,3 +20,8 @@ spring:
 
 server:
   port: 8081
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

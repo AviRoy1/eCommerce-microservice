@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
 
   postgres:
@@ -5,7 +7,6 @@ services:
     container_name: postgres_db
     restart: always
     environment:
-#      POSTGRES_DB: ecommerce_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
@@ -26,6 +27,19 @@ services:
       - "5050:80"
     depends_on:
       - postgres
+    networks:
+      - app-network
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     networks:
       - app-network
 
