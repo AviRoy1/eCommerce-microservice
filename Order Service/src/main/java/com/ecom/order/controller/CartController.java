@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartController {
 
-    private CartService cartService;
+    private final CartService cartService;
 
     @PostMapping
     public ResponseEntity<String> addToCart(@RequestHeader("X-User-ID") String userId,

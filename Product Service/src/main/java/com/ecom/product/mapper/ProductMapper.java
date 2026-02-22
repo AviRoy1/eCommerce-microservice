@@ -30,6 +30,7 @@ public class ProductMapper {
         productResponse.setPrice(product.getPrice());
         productResponse.setStock(product.getStock());
         productResponse.setImageUrl(product.getImageUrl());
+        productResponse.setActive(product.getActive());
 
         return productResponse;
     }

@@ -18,6 +18,7 @@ public class ProductService {
 
     public @Nullable ProductResponse createProduct(ProductRequest productRequest) {
         Product product = productMapper.convertToProduct(productRequest);
+        product.setActive(true);
         product = productRepository.save(product);
         return productMapper.convertToProductResponse(product);
     }
@@ -37,7 +38,7 @@ public class ProductService {
     public ProductResponse findProductById(Long id) {
         return productRepository.findById(id)
                 .map(productMapper::convertToProductResponse)
-                .orElseThrow(() -> new RuntimeException("Product Not Found !!"));
+                .orElse(null);
     }
 
 }

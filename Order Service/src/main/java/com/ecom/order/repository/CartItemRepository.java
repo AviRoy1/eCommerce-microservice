@@ -10,9 +10,8 @@ import java.util.List;
 @Repository
 public interface CartItemRepository extends JpaRepository<CartItem, Long> {
 
-    @Query(value = "select * from cart_item ci join users u on u.id = ci.user_id join products p on p.id = ci.product_id " +
-            "where u.id = :userId and p.id = :productId order by ci.created_on limit 1", nativeQuery = true)
-    CartItem findByUserIdAndProductId(Long userId, Long productId);
+    @Query(value = "select * from cart_item ci where ci.user_id = :userId and ci.product_id = :productId order by ci.created_at limit 1", nativeQuery = true)
+    CartItem findByUserIdAndProductId(String userId, String productId);
 
     List<CartItem> findByUserId(String userId);
 }

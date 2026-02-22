@@ -28,8 +28,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public UserResponse getUserById(Long id) {
-        Optional<Users> user = userRepository.findById(String.valueOf(id));
+    public UserResponse getUserById(String id) {
+        Optional<Users> user = userRepository.findById(id);
         return user.stream()
                 .map(userMapper::convertToUserResponse).findAny().orElse(null);
     }
