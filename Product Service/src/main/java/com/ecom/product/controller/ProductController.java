@@ -2,6 +2,7 @@ package com.ecom.product.controller;
 
 import com.ecom.product.dto.ProductRequest;
 import com.ecom.product.dto.ProductResponse;
+import com.ecom.product.dto.ReduceProductRequest;
 import com.ecom.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,11 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> findProductById(@PathVariable Long id) {
         return  new ResponseEntity<ProductResponse>(productService.findProductById(id), HttpStatus.CREATED);
+    }
 
+    @PostMapping("/reduce-stock")
+    public ResponseEntity<Boolean> reduceProductStock(@RequestBody ReduceProductRequest request) {
+        return new ResponseEntity<Boolean>(productService.reduceProductStock(request), HttpStatus.ACCEPTED);
     }
 
 }

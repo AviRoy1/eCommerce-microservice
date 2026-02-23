@@ -33,4 +33,10 @@ public class CartController {
         return ResponseEntity.ok(cartItem);
     }
 
+    @PostMapping("/order/{id}")
+    public ResponseEntity<Boolean> createOrder(@PathVariable String id) {
+        return ResponseEntity.ok(cartService.createOrder(id));
+    }
+
+
 }

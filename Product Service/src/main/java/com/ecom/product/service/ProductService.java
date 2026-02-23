@@ -2,11 +2,13 @@ package com.ecom.product.service;
 
 import com.ecom.product.dto.ProductRequest;
 import com.ecom.product.dto.ProductResponse;
+import com.ecom.product.dto.ReduceProductRequest;
 import com.ecom.product.entity.Product;
 import com.ecom.product.mapper.ProductMapper;
 import com.ecom.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.Nullable;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,4 +43,14 @@ public class ProductService {
                 .orElse(null);
     }
 
+    public Boolean reduceProductStock(ReduceProductRequest request) {
+        Product product = productRepository.findById(Long.valueOf(request.getProductId())).orElse(null);
+        if(product == null)
+            return false;
+        if(product.getStock() < request.getQuantity())
+            return false;
+        product.setStock(product.getStock() - request.getQuantity());
+        productRepository.save(product);
+        return true;
+    }
 }
