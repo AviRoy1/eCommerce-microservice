@@ -10,6 +10,14 @@ spring:
     username: guest
     password: guest
 
+  jpa:                 # ✅ MUST be inside spring
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
 management:
   endpoints:
     web:
@@ -23,14 +31,6 @@ rabbitmq:
     name: order.queue
   routing:
     key: order.tracking
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 server:
   port: 8083

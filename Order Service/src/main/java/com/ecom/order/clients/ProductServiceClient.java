@@ -14,6 +14,6 @@ public interface ProductServiceClient {
     @GetExchange("/api/products/{id}")
     ProductResponse getProductDetails(@PathVariable String id);
 
-    @PostExchange("/api/cart/reduce-stock")
+    @PostExchange("/api/products/reduce-stock")
     Boolean reduceProductStock(@RequestBody ReduceProductRequest reduceProductRequest);
 }

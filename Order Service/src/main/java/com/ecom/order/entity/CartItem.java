@@ -29,6 +29,9 @@ public class CartItem {
 
     private BigDecimal price;
 
+    @Column(name = "is_removed")
+    private Boolean isRemoved = false;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 

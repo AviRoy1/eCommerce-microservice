@@ -14,4 +14,7 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
     CartItem findByUserIdAndProductId(String userId, String productId);
 
     List<CartItem> findByUserId(String userId);
+
+    @Query(value = "select * from cart_item where user_id = :userId and is_removed = false")
+    List<CartItem> findByUserIdAndActive(String userId);
 }

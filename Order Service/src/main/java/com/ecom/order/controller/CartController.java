@@ -3,6 +3,7 @@ package com.ecom.order.controller;
 import com.ecom.order.dto.CartIteRequest;
 import com.ecom.order.entity.CartItem;
 import com.ecom.order.service.CartService;
+import com.ecom.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 public class CartController {
 
     private final CartService cartService;
+    private final OrderService orderService;
 
     @PostMapping
     public ResponseEntity<String> addToCart(@RequestHeader("X-User-ID") String userId,
@@ -35,7 +37,7 @@ public class CartController {
 
     @PostMapping("/order/{id}")
     public ResponseEntity<Boolean> createOrder(@PathVariable String id) {
-        return ResponseEntity.ok(cartService.createOrder(id));
+        return ResponseEntity.ok(orderService.createOrder(id));
     }
 
 
